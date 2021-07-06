@@ -4,10 +4,10 @@ import qs from 'qs';
 
 export const getToken = data => {
     return request({
-        // url: 'http://twxdsj.dledc.com/api/Wechat/OAuth',
-        url: process.env.VUE_APP_BASE_AUTH_API,
+        url: 'https://mmoa.hilean.cn/api/app/employee/search?keywords=%E6%9B%B9',
+       // url: process.env.VUE_APP_BASE_AUTH_API,
         method: 'post',
-        data
+        data:{keywords: '曹'}
     });
 };
 // appid=m0FuEHFX&auth_token=XrSYtN3q_JXGOVXCX&isFrom=JXGOV

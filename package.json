@@ -72,7 +72,10 @@
         ]
       },
       "postcss-pxtorem": {
-        "rootValue": 37.5,
+        "rootValue": 16,
+        "unitPrecision": 5,
+        "replace": true,
+        "minPixelValue": 0,
         "propList": [
           "*"
         ]

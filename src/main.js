@@ -41,7 +41,8 @@ import {
 	Col,
 	Grid,
 	GridItem,
-	Loading
+	Loading,
+	Image
 } from 'vant';
 
 
@@ -90,9 +91,15 @@ Vue.use(Col);
 Vue.use(Grid);
 Vue.use(GridItem);
 Vue.use(Loading);
+Vue.use(Image);
 
 Vue.prototype.$storage = storage;
 Vue.config.productionTip = false;
+
+// 获取微信Code
+store.dispatch('app/setWXCode');
+// 读取配置文件信息
+store.dispatch('app/getConfig');
 
 new Vue({
 	router,
