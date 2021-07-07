@@ -1,11 +1,7 @@
 <template>
-  <div class="login-box">
-      <div class="flex-box">
-          <img class="login-logo" src="@/assets/images/icon-logo.png" >
-          <div class="register">注册账号</div>
-      </div>
-      <div class="login-body">
-          <div class="login-form">
+  <div class="restpwd-box">
+      <div class="resetpwd-body">
+          <div class="resetpwd-form">
             <van-form @submit="onSubmit" @failed="onFailed">
                 <van-field
                     name="accout"
@@ -39,7 +35,7 @@
 
 <script>
 export default {
-    name:'Login',
+    name:'ResetPwd',
     components: { },
     data(){
         return {

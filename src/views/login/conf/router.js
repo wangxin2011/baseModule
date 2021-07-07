@@ -4,7 +4,8 @@ const loginRouter = [{
     name: 'Login',
     component: () => import(/* webpackChunkName: "index" */'@/views/login/login.vue'),
     meta: {
-      keepAlive: false
+      keepAlive: false,
+      title: '登录'
     }
 }];
 
