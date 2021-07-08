@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import storage from "./utils/localstorage";
+import './styles/common.scss';
 
 import {
 	Lazyload,
@@ -42,7 +43,8 @@ import {
 	Grid,
 	GridItem,
 	Loading,
-	Image
+	Image,
+	Sticky 
 } from 'vant';
 
 
@@ -92,6 +94,7 @@ Vue.use(Grid);
 Vue.use(GridItem);
 Vue.use(Loading);
 Vue.use(Image);
+Vue.use(Sticky);
 
 Vue.prototype.$storage = storage;
 Vue.config.productionTip = false;
