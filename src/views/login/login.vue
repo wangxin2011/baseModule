@@ -29,7 +29,7 @@
                     placeholder="请输入密码" />
                 <van-button class="btn-login" native-type="submit">登录</van-button>
                 <div class="login-other">
-                    <a class="find-account">找回账号</a>|<a class="reset-password">重置密码</a>
+                    <a class="find-account" @click="gotoPage('retrieve')">找回账号</a>|<a class="reset-password" @click="gotoPage('resetpwd')">重置密码</a>
                 </div>
             </van-form>
           </div>
@@ -40,7 +40,8 @@
 <script>
 export default {
     name:'Login',
-    components: { },
+    components: {
+     },
     data(){
         return {
             param:{
@@ -53,10 +54,13 @@ export default {
     computed:{
         openid(){
            return this.$store.getters.openid;
+        },
+        account(){
+            return this.$store.getters.account || ''
         }
     },
     mounted(){
-
+        this.param.account = this.account
     },
     methods:{
         // 校验是否为空的规则
@@ -67,6 +71,12 @@ export default {
                 return false;
             }
             return true;
+        },
+        // 页面跳转
+        gotoPage(path){
+            if(path){
+                this.$router.push({path: path});
+            }
         },
         // 提交数据
         onSubmit(values){
@@ -129,6 +139,12 @@ export default {
                border-radius: 25px;
                background: #F6F6F6;
                margin-top: 20px;
+                /deep/.van-field__value {
+                   .van-field__error-message{
+                        position: fixed;
+                        margin-top: 8px;
+                   }
+                }
            }
            .btn-login{
                 margin-top: 30px;

@@ -8,7 +8,7 @@
  -->
 <template>
   <div class="index-container">
-    <HDheader :left-arrow="true" title="学生信息页"/>
+    <HDheader :left-arrow="false" title="学生信息页"/>
     <div class="index-top-view">
       <div class="flex-box">
         <div>
@@ -26,15 +26,19 @@
         </div>
         <div>
            <div class="user-setting">
-             <van-icon name="discount" class="setting-icon" />设置
+             <van-icon name="setting-o" class="setting-icon"/>设置
            </div>
         </div>
       </div>
     </div>
     <div class="index-body-view">
       <van-cell-group>
-        <van-cell icon="edit" title="我的信息" is-link />
-        <van-cell icon="description" title="我的班级" is-link />
+        <van-cell icon="edit" title="我的信息" is-link @click="gotoPage('user')" />
+        <van-cell v-if="currentUser && currentUser.uerType != 1" icon="description" title="我的班级" is-link  @click="gotoPage('user')" />
+        <template v-else-if="currentUser && currentUser.uerType == 1">
+          <van-cell icon="description" title="班级管理" is-link  @click="gotoPage('user')" />
+          <van-cell icon="friends-o" title="教师管理" is-link  @click="gotoPage('user')" />
+        </template>
       </van-cell-group>
     </div>
   </div>
@@ -57,13 +61,20 @@ export default {
   },
   computed: {
     openid() {
-        return this.$store.state.app.openid;
+      // openid
+        return this.$store.getters.openid;
     },
     token() {
-        return this.$store.state.app.token;
+      // token
+        return this.$store.getters.token;
     },
     userInfo(){
-      return this.$store.state.app.userinfo;
+      // 当前登录用户的所有学校
+      return this.$store.getters.userinfo;
+    },
+    currentUser(){
+      // 当前登录信息默认账号信息
+      return this.$store.getters.currentUser || {};
     }
   },
   mounted() {
@@ -72,7 +83,10 @@ export default {
   activated(){
   },
   methods: {
-   
+    // 进入到其它页面
+    gotoPage(path){
+       this.$router.push({ path: path });
+    }
   }
 }
 </script>

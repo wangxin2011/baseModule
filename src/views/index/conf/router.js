@@ -4,7 +4,8 @@ const indexRouter = [{
     name: 'Index',
     component: () => import(/* webpackChunkName: "index" */'@/views/index/index.vue'),
     meta: {
-      keepAlive: false
+      keepAlive: false,
+      title: '首页'
     }
 }];
 

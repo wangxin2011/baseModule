@@ -47,13 +47,13 @@ module.exports = {
                 .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
         }
     },
-    // css: {
-    //     loaderOptions: {
-    //         sass: {
-    //             prependData: `
-    //                 @import "@/styles/mixin.scss";
-    //             `
-    //         }
-    //     }
-    // }
+    css: {
+        loaderOptions: {
+            sass: {
+                prependData: `
+                    @import "@/styles/mixin.scss";
+                `
+            }
+        }
+    }
 }

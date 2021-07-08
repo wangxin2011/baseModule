@@ -1,5 +1,5 @@
 <template>
-<div id="app">
+<div id="app" class="appbox">
     <keep-alive>
         <router-view v-if="$route.meta.keepAlive"></router-view>
     </keep-alive>
@@ -19,3 +19,9 @@ export default {
     }
 };
 </script>
+<style scoped>
+.appbox{
+    height: calc(100vh);
+    width: 100%;
+}
+</style>

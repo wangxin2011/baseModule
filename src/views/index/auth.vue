@@ -8,7 +8,7 @@
  -->
 <template>
   <div class="auth-container">
-    <Version />
+    <!-- <Version /> -->
     <div v-if="openid">
       <div v-if="isAgree">
         <div class="text-center p-t-80">
@@ -93,13 +93,13 @@ export default {
   },
   computed: {
     openid() {
-        return this.$store.state.app.openid;
+        return this.$store.getters.openid;
     },
     token() {
-        return this.$store.state.app.token;
+        return this.$store.getters.token;
     },
     userInfo(){
-      return this.$store.state.app.userinfo;
+      return this.$store.getters.userinfo;
     }
   },
   mounted() {
@@ -114,9 +114,11 @@ export default {
          this.message2= '请耐心等待';
           // 微信
           this.message3=process.env.VUE_APP_KEY_AUTH_WX_TXT;
-          this.$store.dispatch("app/getUserInfoByToken").then((resp) => {
+          this.$store.dispatch("login/getUserInfoByToken").then((resp) => {
               this.dotshow=false;
-              if(resp || this.token){
+              console.log("getUserInfo=>openid:"+this.openid+"|token=>"+this.token)
+              // 检查是否存在用户，如果不存在用户进入登录
+              if(this.openid || this.token){
                 this.message1 = "授权成功！";
                 this.message2 = '';
                   // 已存在已读,进入授权
@@ -151,13 +153,13 @@ export default {
     },
      // 入口处理
     nativationTo(){
-        if(this.userInfo){
-            // 进入页面
+        if(this.userInfo && this.userInfo.accounts && this.userInfo.accounts.length > 0){
+            // 用户登录且有信息，进入首页
             this.$router.push({
                 path: '/index'
             });
         }else if(this.openid){
-          // 存在openid说明已经获取到微信授权信，没有登录，进入登录页
+          // 未获取到用户信息进入登录页
           this.$router.push({ path: '/login' });
 
         }

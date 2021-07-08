@@ -2,7 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import storage from "./utils/localstorage";
+import storage from "./utils/localstorage"
+import './routerGuard.js'
+import VueClipboard from 'vue-clipboard2'
 
 import {
 	Lazyload,
@@ -96,8 +98,11 @@ Vue.use(Image);
 Vue.prototype.$storage = storage;
 Vue.config.productionTip = false;
 
+VueClipboard.config.autoSetContainer = true // add this line
+Vue.use(VueClipboard)
+
 // 获取微信Code
-store.dispatch('app/setWXCode');
+store.dispatch('login/setWXCode');
 // 读取配置文件信息
 store.dispatch('app/getConfig');
 

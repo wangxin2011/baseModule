@@ -14,4 +14,16 @@ export const getUserInfoByCode = (data) => {
 export const login = (data) => {
     return baseRequest('login', "post", data, null);
 };
+// 通过手机号发送验证码
+export const sendSms = (data) => {
+    return baseRequest('login', "post", data, null);
+};
+// 通过手机验证码重置密码
+export const resetPwd = (data) => {
+    return baseRequest('reset', "post", data, null);
+};
+// 通过学籍号和姓名找回账号
+export const retrieveAccount = (data) => {
+    return baseRequest('reset', "post", data, null);
+};
 

@@ -108,7 +108,7 @@ export const showLoading = (scope, duration) => {
 export const closeLoading = (scope) => {
   scope.$toast.clear();
 }
-
+// 密码复杂度校验8-20位
 export const checkPassword = (password) => {
   let reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
   if (reg.test(password)) {
@@ -116,7 +116,39 @@ export const checkPassword = (password) => {
   }
   return false;
 }
-
+// 密码校验强,密码中必须包含大小写 字母、数字、特称字符，至少6个字符，最多30个字符；
+export const validPasswordH = (password) => {
+  var pwdRegex = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9]){6,30}$/;
+  if (pwdRegex.test(password)) {
+    // 密码符合规则
+    return true
+  }else {
+    // 密码不符合规则
+    return false
+  }
+}
+// 密码校验强,密码中必须包含字母（不区分大小写）、数字、特称字符，至少6个字符，最多30个字符；
+export const validPasswordM = (password) => {
+  var pwdRegex = new RegExp('(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,30}');
+  if (pwdRegex.test(password)) {
+    // 密码符合规则
+    return true
+  }else {
+    // 密码不符合规则
+    return false
+  }
+}
+// 密码校验,密码中必须包含字母（不区分大小写）、数字，至少6个字符，最多30个字符；
+export const validPassword = (password) => {
+  var pwdRegex = new RegExp('(?=.*[0-9])(?=.*[a-zA-Z]).{6,30}');
+  if (pwdRegex.test(password)) {
+    // 密码符合规则
+    return true
+  }else {
+    // 密码不符合规则
+    return false
+  }
+}
 // 加密
 export function Encrypt(word, padding) {
   padding = padding ? CryptoJS.pad.Pkcs7 : CryptoJS.pad.ZeroPadding;

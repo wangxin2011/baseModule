@@ -5,7 +5,7 @@
 <template>
   <div class="tool-bar">
     <van-nav-bar :border="false" :title="title" @click-left="onBack">
-      <template v-if="false" #left>
+      <template v-if="leftArrow" #left>
         <van-icon name="down" color="#1AA5FE" size="20" class="icon-back"/>
       </template>
     </van-nav-bar>
