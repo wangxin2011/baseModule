@@ -73,7 +73,5 @@ methods: {
 };
 </script>
 <style scoped>
-.message{
-  margin-bottom: 7px;
-}
+
 </style>

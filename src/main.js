@@ -43,7 +43,8 @@ import {
 	Grid,
 	GridItem,
 	Loading,
-	Image
+	Image,
+	Sticky 
 } from 'vant';
 
 
@@ -93,6 +94,7 @@ Vue.use(Grid);
 Vue.use(GridItem);
 Vue.use(Loading);
 Vue.use(Image);
+Vue.use(Sticky);
 
 Vue.prototype.$storage = storage;
 Vue.config.productionTip = false;

@@ -1,16 +1,21 @@
 <template>
   <div class="body">
     <!-- 顶部导航栏 -->
-    <div>
-      <van-nav-bar title="我的信息" right-text="按钮" left-arrow @click-left="onClickLeft" @click-right="onClickRight">
-        <template #right>
-            <van-icon name="ellipsis" />
-        </template>
-      </van-nav-bar>
-    </div>
-    <!-- 信息栏 -->
-    <div class="main">
+    <van-sticky>
       <div>
+        <van-nav-bar title="我的信息" right-text="按钮" left-arrow @click-left="onClickLeft" @click-right="onClickRight">
+          <template #right>
+            <van-icon name="ellipsis" />
+          </template>
+        </van-nav-bar>
+      </div>
+      <div @click="basicClick" class="basicTitle">
+        <van-cell-group title="基本信息"></van-cell-group>
+      </div>
+    </van-sticky>
+    <!-- 信息栏 -->   
+    <div class="main">
+      <div v-show="basicshopShow">
         <van-cell-group class="information" >
           <van-field v-model="name" label="姓名" placeholder="去填写" input-align="right" center />
           <van-field readonly clickable label="证件类型" :value="idType" placeholder="去选择" @click="idTypePicker = true" input-align="right" is-link />
@@ -31,15 +36,19 @@
           <van-field readonly clickable label="家庭住址" :value="valueArea" placeholder="添加地址" @click="bindShow" input-align="right" is-link/>
         </van-cell-group>
         <div class="interval"></div>
-      </div>            
-      <div>
-        <van-cell-group class="information">
-          <children v-for="(item,index) in arr" :key="index" :index="index" @remove="remove"></children>
-        </van-cell-group>       
+      </div> 
+      <!-- 家长信息 -->
+      <van-sticky :offset-top="86">
+        <div @click="familyClick" class="basicTitle">
+          <van-cell-group title="家庭信息"></van-cell-group>
+        </div>
+      </van-sticky>
+      <div v-show="familyshopShow">         
         <van-cell-group class="parent">
+          <children v-for="(item,index) in arr" :key="index" :index="index" @remove="remove"></children> 
           <van-field v-model="value" readonly label-class="parentclass" label="家长信息" @click="add" placeholder="添加" input-align="right" :error = "true"/>
         </van-cell-group>
-        </div>
+      </div>
     </div>
     <div class="buttondiv">
         <button class="button">提交</button>
@@ -88,6 +97,8 @@ import Children from '@/components/Children'
 export default {
   data() {
     return {
+      basicshopShow: true, //默认内容显示
+      familyshopShow: true,
       name:'',//姓名
       idNo:'',//证件号码
       idType:'',//证件类型
@@ -206,7 +217,15 @@ export default {
     //删除子组件
     remove(n){
       this.arr.splice(n,1); 
-    }
+    },
+    // 折叠
+    basicClick () {
+        this.basicshopShow = !this.basicshopShow //使true变为false显示
+    },
+    familyClick () {
+        this.familyshopShow = !this.familyshopShow //使true变为false显示
+    },
+
   },
 };
 </script>
