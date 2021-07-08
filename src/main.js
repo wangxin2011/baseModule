@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import storage from "./utils/localstorage";
+import './styles/common.scss';
 
 import {
 	Lazyload,
