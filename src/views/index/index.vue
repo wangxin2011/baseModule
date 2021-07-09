@@ -33,7 +33,7 @@
     </div>
     <div class="index-body-view">
       <van-cell-group>
-        <van-cell icon="edit" title="我的信息" is-link />
+        <van-cell icon="edit" title="我的信息" @click="clickable" is-link />
         <van-cell icon="description" title="我的班级" is-link />
       </van-cell-group>
     </div>
@@ -72,7 +72,10 @@ export default {
   activated(){
   },
   methods: {
-   
+    // 进入我的信息详情页
+    clickable(){
+      this.$router.push({path:'/details'})
+    }
   }
 }
 </script>
